@@ -29,10 +29,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Collections;
 
 /**
  * <p>
@@ -165,7 +166,7 @@ public class ProcessingKafkaConsumer<K, V> implements Closeable {
     /**
      * Maintains the state of all the partitions our consumer is assigned to
      */
-    protected final Map<TopicPartition, ProcessingPartition<K, V>> partitions = new ConcurrentHashMap<>();
+    protected final Map<TopicPartition, ProcessingPartition<K, V>> partitions = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * The partition to process from next
