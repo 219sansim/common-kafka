@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -84,7 +84,7 @@ public class ProcessingPartition<K, V> implements Closeable {
     /**
      * The set of offsets that have been {@link #nextRecord() read} but not {@link #ack(long) acked}
      */
-    protected final Map<Long, Long> pendingOffsets = new HashMap<>();
+    protected final Map<Long, Long> pendingOffsets = new LinkedHashMap<>();
 
     /**
      * The set of offsets that have been {@link #ack(long) acked} but not committed
